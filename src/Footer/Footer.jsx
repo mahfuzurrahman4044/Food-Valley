@@ -85,17 +85,17 @@ const Footer = () => {
 
                     <div>
                         <Form onSubmit={btnSendMessage}>
-                            <Form.Group className="m-3" controlId="formBasicEmail">
+                            <Form.Group className="m-3" controlId="formName">
                                 <Form.Label>Enter your name:</Form.Label>
                                 <Form.Control type="text" placeholder="Name" required />
                             </Form.Group>
 
-                            <Form.Group className="m-3" controlId="formBasicEmail">
+                            <Form.Group className="m-3" controlId="formEmail">
                                 <Form.Label>Enter your email:</Form.Label>
                                 <Form.Control type="email" placeholder="Email" required />
                             </Form.Group>
 
-                            <Form.Group className="m-3" controlId="formBasicPassword">
+                            <Form.Group className="m-3" controlId="formPassword">
                                 <Form.Label>Write your message:</Form.Label>
                                 <Form.Control type="text" placeholder="Message" />
                             </Form.Group>

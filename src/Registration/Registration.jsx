@@ -1,9 +1,80 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import { Container } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+
 
 const Registration = () => {
+    const [message, setMessage] = useState();
+    // console.log(message);
+
+    const [error, setError] = useState("");
+    // console.log(error);
+
+    // const { user } = useContext(AuthContex);
+
+
+    const handleRegister = event => {
+        event.preventDefault();
+
+        const form = event.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        const confirmPassword = form.confirmPassword.value;
+
+        // console.log(name, email, password, confirmPassword);
+
+        setError("");
+
+        if (password != confirmPassword) {
+            setError("Password doesn't match")
+            return;
+        }
+        else if (password.length < 6) {
+            setError("Your password must be more than 6 character")
+            return
+        }
+        else {
+            setMessage("Okay, done.")
+        }
+    }
     return (
         <div>
-            
+            <Container>
+                <Form onSubmit={handleRegister}>
+                    <Form.Group className="mb-3" controlId="formBasicName">
+                        <Form.Label>Enter your name:</Form.Label>
+                        <Form.Control type="text" name='name' placeholder="Name" required />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label>Enter your email:</Form.Label>
+                        <Form.Control type="email" name='email' placeholder="Email" required />
+                        <Form.Text className="text-muted">
+                            Never share your email with anyone else.
+                        </Form.Text>
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Label>Enter your password:</Form.Label>
+                        <Form.Control type="password" name='password' placeholder="Password" />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="formBasicConfirmPassword">
+                        <Form.Label>Confirm your password:</Form.Label>
+                        <Form.Control type="password" name='confirmPassword' placeholder="Confirm Password" />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                        <Form.Check type="checkbox" label="Check me out" />
+                    </Form.Group>
+                    <Button variant="primary" type="submit">
+                        Register
+                    </Button>
+                </Form>
+
+                
+            </Container>
         </div>
     );
 };
