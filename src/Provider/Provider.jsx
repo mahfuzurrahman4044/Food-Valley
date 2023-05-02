@@ -8,7 +8,7 @@ const auth = getAuth(app)
 
 const Provider = ({ children }) => {
 
-    const [user, setUser]=useState(null);
+    const [user, setUser] = useState(null);
 
 
 
@@ -17,13 +17,17 @@ const Provider = ({ children }) => {
         return createUserWithEmailAndPassword(auth, email, password);
     }
 
-    
+    const signIn = (email, password) => {
+        return signInWithEmailAndPassword(auth, email, password);
+    }
+
+
 
     const authInfo = {
         user,
         // loader,
         createUser,
-        // signIn,
+        signIn,
         // logOut,
     }
 

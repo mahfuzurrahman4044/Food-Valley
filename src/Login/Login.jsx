@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { useContext } from 'react';
 import { Container } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { AuthContex } from '../Provider/Provider';
+import { Link } from 'react-router-dom';
 
 
 const Login = () => {
@@ -11,6 +14,8 @@ const Login = () => {
     const [error, setError] = useState("");
     console.log(error);
 
+    const {signIn}=useContext(AuthContex);
+
     const handleLogin=(event)=>{
 
         event.preventDefault();
@@ -19,7 +24,20 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
 
-        console.log(email, password);
+        // console.log(email, password);
+
+        signIn(email, password)
+        .then(result=>{
+            const loggedUser=result.user;
+            console.log(loggedUser);
+            setMessage("Logged in successfully");
+            setError("");
+        })
+        .catch(error=>{
+            setMessage("");
+            setError(error.message);
+        })
+
     }
     return (
         <div>
@@ -42,8 +60,11 @@ const Login = () => {
                     </Form.Group>
                     <Button variant="primary" type="submit">
                         Submit
-                    </Button>
+                    </Button> New here? Please <Link to="/registration">Register</Link>
                 </Form>
+                {
+                    message? <div>{message}</div>: <div>{error}</div>
+                }
             </Container>
         </div>
     );

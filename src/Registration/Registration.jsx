@@ -3,6 +3,7 @@ import { Container } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { AuthContex } from '../Provider/Provider';
+import { Link } from 'react-router-dom';
 
 
 const Registration = () => {
@@ -84,7 +85,7 @@ const Registration = () => {
                     </Form.Group>
                     <Button variant="primary" type="submit">
                         Register
-                    </Button>
+                    </Button> Already have an account? Please <Link to="/login">Login</Link>
                 </Form>
                 {
                     message? <div>{message}</div>: <div>{error}</div>
