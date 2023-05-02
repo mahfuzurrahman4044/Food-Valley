@@ -5,6 +5,8 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { AuthContex } from '../Provider/Provider';
 import { Link } from 'react-router-dom';
+import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import './Login.css';
 
 
 const Login = () => {
@@ -14,9 +16,9 @@ const Login = () => {
     const [error, setError] = useState("");
     console.log(error);
 
-    const {signIn}=useContext(AuthContex);
+    const { signInWithEmail, signInWithGoogle, signInWithGithub } = useContext(AuthContex);
 
-    const handleLogin=(event)=>{
+    const handleLogin = (event) => {
 
         event.preventDefault();
 
@@ -26,26 +28,62 @@ const Login = () => {
 
         // console.log(email, password);
 
-        signIn(email, password)
-        .then(result=>{
-            const loggedUser=result.user;
-            console.log(loggedUser);
-            setMessage("Logged in successfully");
-            setError("");
-        })
-        .catch(error=>{
-            setMessage("");
-            setError(error.message);
-        })
+        signInWithEmail(email, password)
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                setMessage("Logged in successfully");
+                setError("");
+            })
+            .catch(error => {
+                setMessage("");
+                setError(error.message);
+            })
 
     }
+
+
+    const googleProvider = new GoogleAuthProvider();
+
+    const handleGoogleLogin = () => {
+        signInWithGoogle(googleProvider)
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                setMessage("Logged in successfully");
+                setError("");
+            })
+            .catch(error => {
+                setMessage("");
+                setError(error.message);
+            })
+    }
+
+    const githubProvider = new GithubAuthProvider();
+
+    const handleGithubLogin = (githubProvider) => {
+        signInWithGithub(githubProvider)
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                setMessage("Logged in successfully");
+                setError("");
+            })
+            .catch(error => {
+                setMessage("");
+                setError(error.message);
+            })
+    }
+
+
+
     return (
         <div>
-            <Container>
+            <Container className='mb-5'>
                 <Form onSubmit={handleLogin}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" name='email' placeholder="Enter email"  required/>
+                        <Form.Control type="email" name='email' placeholder="Enter email" required />
                         <Form.Text className="text-muted">
                             We'll never share your email with anyone else.
                         </Form.Text>
@@ -63,9 +101,20 @@ const Login = () => {
                     </Button> New here? Please <Link to="/registration">Register</Link>
                 </Form>
                 {
-                    message? <div>{message}</div>: <div>{error}</div>
+                    message ? <h4 className='text-center'>{message}</h4> : <h4 className='text-center'>{error}</h4>
                 }
             </Container>
+
+
+
+
+            <Container className='m-1 google'>
+                <Button onClick={handleGoogleLogin}>Sign in with Google</Button>
+            </Container>
+            <Container className='m-1 ms-6 github'>
+                <Button onClick={handleGithubLogin}>Sign in with Github</Button>
+            </Container>
+
         </div>
     );
 };

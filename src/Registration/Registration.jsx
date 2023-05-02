@@ -13,13 +13,14 @@ const Registration = () => {
     const [error, setError] = useState("");
     console.log(error);
 
-    const { createUser} = useContext(AuthContex);
+    const { createUser } = useContext(AuthContex);
 
 
     const handleRegister = event => {
         event.preventDefault();
 
         const form = event.target;
+        const image = form.image.value;
         const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
@@ -42,22 +43,27 @@ const Registration = () => {
         }
 
         createUser(email, password)
-        .then (result=>{
-            const registeredUser=result.user;
-            console.log(registeredUser);
-            setMessage("Account has been craeted successfully");
-            setError("");
+            .then(result => {
+                const registeredUser = result.user;
+                console.log(registeredUser);
+                setMessage("Account has been craeted successfully");
+                setError("");
 
-        })
-        .catch(error=>{
-            setMessage("");
-            setError(error.message);
-        })
+            })
+            .catch(error => {
+                setMessage("");
+                setError(error.message);
+            })
     }
     return (
         <div>
             <Container>
                 <Form onSubmit={handleRegister}>
+                    <Form.Group className="mb-3" controlId="formBasicImage">
+                        <Form.Label>Enter your image:</Form.Label>
+                        <Form.Control type="url" name='image' placeholder="Image" required />
+                    </Form.Group>
+
                     <Form.Group className="mb-3" controlId="formBasicName">
                         <Form.Label>Enter your name:</Form.Label>
                         <Form.Control type="text" name='name' placeholder="Name" required />
@@ -86,13 +92,13 @@ const Registration = () => {
                     <Button variant="primary" type="submit">
                         Register
                     </Button> Already have an account? Please <Link to="/login">Login</Link>
+
                 </Form>
                 {
-                    message? <div>{message}</div>: <div>{error}</div>
+                    message ? <h4 className='text-center'>{message}</h4> : <h4 className='text-center'>{error}</h4>
                 }
-
-
             </Container>
+
         </div>
     );
 };
