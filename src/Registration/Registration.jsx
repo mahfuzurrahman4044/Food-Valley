@@ -2,16 +2,17 @@ import React, { useContext, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { AuthContex } from '../Provider/Provider';
 
 
 const Registration = () => {
     const [message, setMessage] = useState();
-    // console.log(message);
+    console.log(message);
 
     const [error, setError] = useState("");
-    // console.log(error);
+    console.log(error);
 
-    // const { user } = useContext(AuthContex);
+    const { user, createUser} = useContext(AuthContex);
 
 
     const handleRegister = event => {
@@ -36,8 +37,20 @@ const Registration = () => {
             return
         }
         else {
-            setMessage("Okay, done.")
+            setMessage("Account has been craeted successfully.")
         }
+
+        createUser(email, password)
+        .then (result=>{
+            const registeredUser=result.user;
+            setMessage("Account has been craeted successfully");
+            setError("");
+
+        })
+        .catch(error=>{
+            setMessage("");
+            setError(error.message);
+        })
     }
     return (
         <div>
@@ -73,7 +86,7 @@ const Registration = () => {
                     </Button>
                 </Form>
 
-                
+
             </Container>
         </div>
     );
