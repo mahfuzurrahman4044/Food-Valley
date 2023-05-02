@@ -12,7 +12,7 @@ const Registration = () => {
     const [error, setError] = useState("");
     console.log(error);
 
-    const { user, createUser} = useContext(AuthContex);
+    const { createUser} = useContext(AuthContex);
 
 
     const handleRegister = event => {
@@ -43,6 +43,7 @@ const Registration = () => {
         createUser(email, password)
         .then (result=>{
             const registeredUser=result.user;
+            console.log(registeredUser);
             setMessage("Account has been craeted successfully");
             setError("");
 
@@ -85,6 +86,9 @@ const Registration = () => {
                         Register
                     </Button>
                 </Form>
+                {
+                    message? <div>{message}</div>: <div>{error}</div>
+                }
 
 
             </Container>
