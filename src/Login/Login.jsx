@@ -11,10 +11,10 @@ import './Login.css';
 
 const Login = () => {
     const [message, setMessage] = useState();
-    console.log(message);
+    // console.log(message);
 
     const [error, setError] = useState("");
-    console.log(error);
+    // console.log(error);
 
     const { signInWithEmail, signInWithGoogle, signInWithGithub } = useContext(AuthContex);
 
@@ -26,6 +26,8 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
 
+        event.target.reset();
+        
         // console.log(email, password);
 
         signInWithEmail(email, password)
@@ -61,9 +63,10 @@ const Login = () => {
 
     const githubProvider = new GithubAuthProvider();
 
-    const handleGithubLogin = (githubProvider) => {
+    const handleGithubLogin = () => {
         signInWithGithub(githubProvider)
             .then(result => {
+
                 const loggedUser = result.user;
                 console.log(loggedUser);
                 setMessage("Logged in successfully");

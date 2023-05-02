@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom';
 const Home = () => {
     return (
         <div>
-            <h2>Home</h2>
+            <h2 className='text-center'>Home</h2>
         </div>
     );
 };

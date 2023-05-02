@@ -1,12 +1,23 @@
 import React, { useContext } from 'react';
-import { Container } from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
 import ActiveLink from "../ActiveLink/ActiveLink";
 import logo from '../../src/assets/305932265_498090215657179_760292799344673145_n.jpg';
 import './Header.css';
 import { AuthContex } from '../Provider/Provider';
 
 const Header = () => {
-    const {user}=useContext(AuthContex);
+    const { user, logOut } = useContext(AuthContex);
+
+    const handleLogOut = () => {
+        logOut()
+            .then(result => {
+                // console.log(result);
+            })
+            .catch(error => {
+                console.log(error.message)
+            })
+    }
+
     return (
         <div>
             <Container className='my-3'>
@@ -18,7 +29,7 @@ const Header = () => {
                         <ActiveLink to="/">Home</ActiveLink>
                         <ActiveLink to="/blog">Blog</ActiveLink>
                         {
-                            user ? <span>{user.displayName}</span>:<ActiveLink to="login">Login</ActiveLink>
+                            user ? <span><img src={user.photoURL} alt="" className="userPhoto" /> <Button className='btn' onClick={handleLogOut}>Log Out</Button></span> : <ActiveLink to="login">Login</ActiveLink>
                         }
                         <ActiveLink to="registration">Registration</ActiveLink>
                     </div>

@@ -8,10 +8,10 @@ import { Link } from 'react-router-dom';
 
 const Registration = () => {
     const [message, setMessage] = useState();
-    console.log(message);
+    // console.log(message);
 
     const [error, setError] = useState("");
-    console.log(error);
+    // console.log(error);
 
     const { createUser } = useContext(AuthContex);
 
@@ -25,6 +25,8 @@ const Registration = () => {
         const email = form.email.value;
         const password = form.password.value;
         const confirmPassword = form.confirmPassword.value;
+
+        event.target.reset();
 
         // console.log(name, email, password, confirmPassword);
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import "./Footer.css";
 
 const Footer = () => {
     const [message, setMessage] = useState();
