@@ -22,16 +22,15 @@ const Header = () => {
         <div>
             <Container className='my-3'>
                 <div className='d-flex justify-content-between align-items-center'>
-                    <div className='logo'>
-                        <img src={logo} alt="" />
+                    <div>
+                        <img  className='logo' src={logo} alt="" />
                     </div>
                     <div className='d-flex justify-content-around align-items-center'>
                         <ActiveLink to="/">Home</ActiveLink>
                         <ActiveLink to="/blog">Blog</ActiveLink>
                         {
-                            user ? <span><img src={user.photoURL} alt="" className="userPhoto" /> <Button className='btn' onClick={handleLogOut}>Log Out</Button></span> : <ActiveLink to="login">Login</ActiveLink>
+                            user ? <span><img src={user.photoURL} alt="" className="userPhoto" /> <Button className='btn' onClick={handleLogOut}>Log Out</Button></span> : <><ActiveLink to="login">Login</ActiveLink><ActiveLink to="registration">Registration</ActiveLink></>
                         }
-                        <ActiveLink to="registration">Registration</ActiveLink>
                     </div>
                 </div>
             </Container>

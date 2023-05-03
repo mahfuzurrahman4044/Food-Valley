@@ -13,7 +13,7 @@ const Registration = () => {
     const [error, setError] = useState("");
     // console.log(error);
 
-    const { createUser } = useContext(AuthContex);
+    const { createUser, updateUser } = useContext(AuthContex);
 
 
     const handleRegister = event => {
@@ -33,12 +33,12 @@ const Registration = () => {
         setError("");
 
         if (password != confirmPassword) {
-            setError("Password doesn't match")
+            setError("Password doesn't match");
             return;
         }
         else if (password.length < 6) {
-            setError("Your password must be more than 6 character")
-            return
+            setError("Your password must be more than 6 character");
+            return;
         }
         else {
             setMessage("Account has been craeted successfully.")
@@ -50,13 +50,21 @@ const Registration = () => {
                 console.log(registeredUser);
                 setMessage("Account has been craeted successfully");
                 setError("");
-
+                updateUser(registeredUser, image, name)
+                    .then(() => {
+                        console.log("User Updated")
+                    })
+                    .catch(error => {
+                        console.log(error.message)
+                    })
             })
             .catch(error => {
                 setMessage("");
                 setError(error.message);
             })
     }
+
+
     return (
         <div>
             <Container>
