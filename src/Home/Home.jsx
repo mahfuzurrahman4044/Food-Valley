@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import { Container } from 'react-bootstrap';
 import img1 from '../assets/imgonline-com-ua-resize-0xa6iexTlI.jpg';
 import img2 from "../assets/imgonline-com-ua-resize-CtQ3uupuwc8mMicm.jpg";
 import img3 from "../assets/imgonline-com-ua-resize-vMCefWbGfv.jpg";
+import Chef from '../Chef/Chef';
 
 const Home = () => {
     const [index, setIndex] = useState(0);
@@ -12,10 +13,23 @@ const Home = () => {
         setIndex(selectedIndex);
     };
 
+
     // const imageStyle = {
     //     maxHeight: '500px',
     //     maxWidth: '800px'
     // };
+
+
+    const [chefs, setChefs] = useState([]);
+
+    useEffect(() => {
+        fetch("http://localhost:3000/chef")
+            .then(res => res.json())
+            .then(data => setChefs(data));
+    }, [])
+
+
+
     return (
         <div>
             <Container className='p-5'>
@@ -60,9 +74,17 @@ const Home = () => {
                 </Carousel>
             </Container>
 
+            
 
 
-        </div>
+
+            <Container className='row ms-5 ps-5'>
+                {
+                    chefs.map(chef=> <div className='col-3 mb-3'><Chef key={chef.id} chef={chef}></Chef></div>)
+                }
+                
+            </Container >
+        </div >
     );
 };
 
