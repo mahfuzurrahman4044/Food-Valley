@@ -5,8 +5,8 @@
 
 .img{
     border-radius: 50%;
-    height: 120px;
-    width: 100px;
+    height: 100px;
+    width: 120px;
 }
 .hv:hover{
     transform: scale(1.20);

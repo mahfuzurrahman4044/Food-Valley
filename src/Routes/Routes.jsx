@@ -6,6 +6,8 @@ import Login from '../Login/Login';
 import Registration from '../Registration/Registration';
 import Main from '../Main/Main';
 import Recipe from '../Recipe/Recipe';
+import Error from '../Error/Error';
+import PrivateRoute from '../PrivateRoute/PrivateRoute';
 
 const router = createBrowserRouter([
     {
@@ -28,18 +30,22 @@ const router = createBrowserRouter([
                 path: "/registration",
                 element: <Registration></Registration>
             },
-            // {
-            //     path: "/recipe/:id",
-            //     element: <Recipe></Recipe>,
-            //     loader: ({ params }) => fetch(`http://localhost:3000/chef/${params.id}`)
-            // }
+            {
+                path: "/recipe/:id",
+                element: <PrivateRoute><Recipe></Recipe></PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:3000/chef/${params.id}`)
+            },
+            {
+                path: "*",
+                element: <Error></Error>
+            }
         ],
-    },
-    {
-        path: "/recipe/:id",
-        element: <Recipe></Recipe>,
-        loader: ({ params }) => fetch(`http://localhost:3000/chef/${params.id}`)
     }
+    // {
+    //     path: "/recipe/:id",
+    //     element: <Recipe></Recipe>,
+    //     loader: ({ params }) => fetch(`http://localhost:3000/chef/${params.id}`)
+    // }
 ]);
 
 export default router;

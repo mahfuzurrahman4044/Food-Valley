@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
-import { Container } from 'react-bootstrap';
+import { Container, Spinner } from 'react-bootstrap';
 import img1 from '../assets/imgonline-com-ua-resize-0xa6iexTlI.jpg';
 import img2 from "../assets/imgonline-com-ua-resize-CtQ3uupuwc8mMicm.jpg";
 import img3 from "../assets/imgonline-com-ua-resize-vMCefWbGfv.jpg";
@@ -8,27 +8,22 @@ import Chef from '../Chef/Chef';
 
 const Home = () => {
     const [index, setIndex] = useState(0);
+    const [isLoading, setIsLoading] = useState(true); // add state variable
 
     const handleSelect = (selectedIndex, e) => {
         setIndex(selectedIndex);
     };
-
-
-    // const imageStyle = {
-    //     maxHeight: '500px',
-    //     maxWidth: '800px'
-    // };
-
 
     const [chefs, setChefs] = useState([]);
 
     useEffect(() => {
         fetch("http://localhost:3000/chef")
             .then(res => res.json())
-            .then(data => setChefs(data));
-    }, [])
-
-
+            .then(data => {
+                setChefs(data);
+                setIsLoading(false); // set isLoading to false after data has been fetched
+            });
+    }, []);
 
     return (
         <div>
@@ -74,17 +69,20 @@ const Home = () => {
                 </Carousel>
             </Container>
 
-            
 
-
-
-            <Container className='row ms-5 ps-5'>
-                {
-                    chefs.map(chef=> <div className='col-3 mb-3'><Chef key={chef.id} chef={chef}></Chef></div>)
-                }
-                
-            </Container >
-        </div >
+            {/* conditional rendering of spinner */}
+            {isLoading ?
+                <Container className="d-flex justify-content-center">
+                    <Spinner animation="border" variant="primary" />
+                </Container>
+                :
+                <Container className='row ms-5 ps-5'>
+                    {
+                        chefs.map(chef => <div className='col-3 mb-3'><Chef key={chef.id} chef={chef}></Chef></div>)
+                    }
+                </Container>
+            }
+        </div>
     );
 };
 

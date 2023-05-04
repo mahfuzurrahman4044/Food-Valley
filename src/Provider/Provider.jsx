@@ -7,17 +7,18 @@ export const AuthContex = createContext(null);
 const auth = getAuth(app)
 
 const Provider = ({ children }) => {
-
+    const [loading, setLoading] = useState(true);
     const [user, setUser] = useState(null);
 
 
 
     const createUser = (email, password) => {
-        // setLoader(true);
+        setLoader(true);
         return createUserWithEmailAndPassword(auth, email, password);
     }
 
     const updateUser = (craetedUser, photo, name) => {
+        setLoading(true);
         return updateProfile(craetedUser, {
             displayName: name,
             photoURL: photo
@@ -25,24 +26,29 @@ const Provider = ({ children }) => {
     }
 
     const signInWithEmail = (email, password) => {
+        setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     }
 
     const signInWithGoogle = (googleProvider) => {
+        setLoading(true);
         return signInWithPopup(auth, googleProvider);
     }
 
     const signInWithGithub = (githubProvider) => {
+        setLoading(true);
         return signInWithPopup(auth, githubProvider);
     }
 
     const logOut = () => {
+        setLoading(true);
         return signOut(auth);
     }
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
+            setLoading(false);
         });
         return () => {
             return unsubscribe;
@@ -52,7 +58,7 @@ const Provider = ({ children }) => {
 
     const authInfo = {
         user,
-        // loader,
+        loading,
         createUser,
         signInWithEmail,
         signInWithGoogle,

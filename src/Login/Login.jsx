@@ -4,7 +4,7 @@ import { Container } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { AuthContex } from '../Provider/Provider';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import './Login.css';
 
@@ -17,6 +17,11 @@ const Login = () => {
     // console.log(error);
 
     const { signInWithEmail, signInWithGoogle, signInWithGithub } = useContext(AuthContex);
+
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || '/'
 
     const handleLogin = (event) => {
 
@@ -34,6 +39,7 @@ const Login = () => {
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
+                navigate(from, { replace: true })
                 setMessage("Logged in successfully");
                 setError("");
             })
@@ -52,6 +58,7 @@ const Login = () => {
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
+                navigate(from, { replace: true })
                 setMessage("Logged in successfully");
                 setError("");
             })
@@ -69,6 +76,7 @@ const Login = () => {
 
                 const loggedUser = result.user;
                 console.log(loggedUser);
+                navigate(from, { replace: true })
                 setMessage("Logged in successfully");
                 setError("");
             })
