@@ -6,14 +6,16 @@ import { getAnalytics } from "firebase/analytics";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
+console.log("Encvironment variable: ", import.meta.env.VITE_PASS)
 const firebaseConfig = {
-  apiKey: "AIzaSyDXkZlhRno6_2tejn-uv1tyQO9hjXPaMms",
-  authDomain: "food-valley-f5899.firebaseapp.com",
-  projectId: "food-valley-f5899",
-  storageBucket: "food-valley-f5899.appspot.com",
-  messagingSenderId: "817360081242",
-  appId: "1:817360081242:web:9477aa3cb32bd77ba5e363",
-  measurementId: "G-Q7G606QQ61"
+  apiKey: import.meta.env.VITE_APIKEY,
+  authDomain: import.meta.env.VITE_AUTHDOMAIN,
+  projectId: import.meta.env.VITE_PROJECTID,
+  storageBucket: import.meta.env.VITE_STORAGEBUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGINGSENDERID,
+  appId: import.meta.env.VITE_APPID,
+  measurementId: import.meta.env.VITE_MEASUREMENTID
 };
 
 // Initialize Firebase
