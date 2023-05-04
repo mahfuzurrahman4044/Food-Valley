@@ -29,7 +29,7 @@ const Header = () => {
                         <ActiveLink to="/">Home</ActiveLink>
                         <ActiveLink to="/blog">Blog</ActiveLink>
                         {
-                            user ? <span><img src={user.photoURL} alt="" className="userPhoto" /> <Button className='btn' onClick={handleLogOut}>Log Out</Button></span> : <><ActiveLink to="login">Login</ActiveLink><ActiveLink to="registration">Registration</ActiveLink></>
+                            user ? <span title={`${user.displayName}`}><img src={user.photoURL} alt="" className="userPhoto" /> <Button className='btn' onClick={handleLogOut}>Log Out</Button></span> : <><ActiveLink to="login">Login</ActiveLink><ActiveLink to="registration">Registration</ActiveLink></>
                         }
                     </div>
                 </div>

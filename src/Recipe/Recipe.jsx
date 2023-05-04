@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { Button, Container, Toast, Spinner } from 'react-bootstrap'; // import Spinner from react-bootstrap
 import "./Recipe.css"
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
 import Card from 'react-bootstrap/Card';
 
 const Recipe = () => {
@@ -30,9 +28,9 @@ const Recipe = () => {
     return (
         <div>
             {isLoading ? ( // show spinner if isLoading is true
-                <div style={{height: "100vh"}}>
-                <Spinner className="d-flex justify-content-center align-items-center" animation="border" variant="primary" />
-            </div>
+                <div style={{ height: "100vh" }}>
+                    <Spinner className="d-flex justify-content-center align-items-center" animation="border" variant="primary" />
+                </div>
             ) : (
                 <div>
                     <Container className='text-center'>
@@ -53,6 +51,7 @@ const Recipe = () => {
                                     <Card.Body>
                                         <Card.Title>Recipe name: {recipe.recipeName}</Card.Title>
                                         <Card.Text>Ingredients: {recipe.ingredients}</Card.Text>
+                                        <Card.Text>Cooking method: {recipe.cookingMethod}</Card.Text>
                                         <div className='d-flex justify-content-around align-items-center'>
                                             <div>Ratings: {recipe.rating}</div>
                                             <div className=''>
@@ -67,12 +66,14 @@ const Recipe = () => {
                         ))}
                     </Container>
 
-                    <Toast show={showToast} onClose={() => setShowToast(false)}>
-                        <Toast.Header>
-                            <strong className="mr-auto">Success!</strong>
-                        </Toast.Header>
-                        <Toast.Body>This recipe has been added to your favorites.</Toast.Body>
-                    </Toast>
+                    <div className='d-flex justify-content-center'>
+                        <Toast show={showToast} onClose={() => setShowToast(false)}>
+                            <Toast.Header>
+                                <strong className="mr-auto">Success!</strong>
+                            </Toast.Header>
+                            <Toast.Body>This recipe has been added to your favorites.</Toast.Body>
+                        </Toast>
+                    </div>
                 </div>
             )}
         </div>

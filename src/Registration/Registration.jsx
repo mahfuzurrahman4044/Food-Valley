@@ -26,9 +26,8 @@ const Registration = () => {
         const password = form.password.value;
         const confirmPassword = form.confirmPassword.value;
 
-        event.target.reset();
 
-        // console.log(name, email, password, confirmPassword);
+        console.log(name, email, password, confirmPassword);
 
         setError("");
 
@@ -53,6 +52,7 @@ const Registration = () => {
                 updateUser(registeredUser, image, name)
                     .then(() => {
                         console.log("User Updated")
+                        // event.target.reset();
                     })
                     .catch(error => {
                         console.log(error.message)

@@ -13,7 +13,7 @@ const Provider = ({ children }) => {
 
 
     const createUser = (email, password) => {
-        setLoader(true);
+        setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
     }
 
