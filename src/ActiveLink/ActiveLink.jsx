@@ -4,7 +4,7 @@ import '../ActiveLink/ActiveLink.css';
 
 const ActiveLink = ({ to, children }) => {
     return (
-        <NavLink to={to} className={({ isActive }) => isActive ? "active" : ""} style={{ marginRight: "15px" }}>
+        <NavLink to={to} className={({ isActive }) => isActive ? "act" : ""} style={{ marginRight: "15px" }}>
             {children}
         </NavLink >
     );

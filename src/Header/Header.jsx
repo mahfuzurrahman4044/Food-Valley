@@ -21,10 +21,11 @@ const Header = () => {
     return (
         <div>
             <Container className='my-3'>
-                <div className='d-flex justify-content-between align-items-center'>
-                    <div>
-                        <img  className='logo' src={logo} alt="" />
+                <div className='d-sm-flex justify-content-sm-between align-items-center'>
+                    <div className=''>
+                        <img className='logo' src={logo} alt="" />
                     </div>
+
                     <div className='d-flex justify-content-around align-items-center'>
                         <ActiveLink to="/">Home</ActiveLink>
                         <ActiveLink to="/blog">Blog</ActiveLink>

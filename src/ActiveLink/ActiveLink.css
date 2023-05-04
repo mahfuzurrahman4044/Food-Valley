@@ -1,7 +1,7 @@
-.active {
+.act {
     background-color: burlywood;
     text-decoration: none;
     border-radius: 5px;
-    /* padding: 5px; */
+    padding: 5px;
     margin: 10px;
 }

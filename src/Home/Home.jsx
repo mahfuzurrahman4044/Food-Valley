@@ -25,7 +25,7 @@ const Home = () => {
     const [chefs, setChefs] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:3000/chef")
+        fetch("https://food-valley-server-mahfuzurrahman4044.vercel.app/chef")
             .then(res => res.json())
             .then(data => {
                 setChefs(data);
@@ -79,8 +79,8 @@ const Home = () => {
                 <div className='m-5'>
                     <h2 className='text-center'>Our Services</h2>
 
-                    <div className='d-flex justify-content-around align-items-center'>
-                        <div>
+                    <div className='row align-items-center'>
+                        <div className='col-sm-4 col-12'>
                             <img className='number my-3' src={img4} alt="" />
                             <h3>Real Test</h3>
                             <p>Looking for an authentic taste of Bangladesh? <br />
@@ -92,19 +92,19 @@ const Home = () => {
                             <Button>More</Button>
                         </div>
 
-                        <div>
+                        <div className='col-sm-4 col-12'>
                             <img className='number my-3' src={img5} alt="" />
                             <h3>Best Chef</h3>
                             <p>Introducing the culinary masters behind the <br />
                                 flavors that make our restaurant so unforgettable! <br />
-                                Our talented chefs pour their passion and expertise <br />
-                                into every dish, infusing each one with the rich <br />
-                                spices and traditional flavors of Bangladesh.
+                                Our talented chefs pour their passion and expertise
+                                into every dish, infusing each one with <br />
+                                the rich spices and flavors of Bangladesh.
                             </p>
                             <Button>More</Button>
                         </div>
 
-                        <div>
+                        <div className='col-sm-4 col-12'>
                             <img className='number my-3' src={img6} alt="" />
                             <h3>Best Recipe</h3>
                             <p>At our restaurant, we take pride in serving <br />
@@ -127,9 +127,9 @@ const Home = () => {
                     <Spinner animation="border" variant="primary" />
                 </Container>
                 :
-                <Container className='row ms-5 ps-5'>
+                <Container className='row align-items-center justify-content-center ms-5 ps-5'>
                     {
-                        chefs.map(chef => <div className='col-3 mb-3'><Chef key={chef.id} chef={chef}></Chef></div>)
+                        chefs.map(chef => <div className='col-sm-3 col-12 mb-3'><Chef key={chef.id} chef={chef}></Chef></div>)
                     }
                 </Container>
             }
@@ -138,38 +138,38 @@ const Home = () => {
 
             <div className='m-5'>
                 <h2 className='text-center'>Client Review</h2>
-                <div className='d-flex justify-content-around align-items-center mt-5'>
-                    <div>
+                <div className='row align-items-center mt-5 justify-content-around'>
+                    <div className='col-sm-3 col-12'>
                         <Card style={{ width: '18rem' }}>
                             <Card.Img className="pic" variant="top" src={client1} />
                             <Card.Body>
                                 <Card.Title>Rahul Patel</Card.Title>
                                 <Card.Text>
-                                Absolutely loved the food at this restaurant! The flavors were amazing and everything was so fresh. The Sizzling Beef Fajitas were a standout - I'll definitely be back for more.
+                                    Absolutely loved the food at this restaurant! The flavors were amazing and everything was so fresh. The Sizzling Beef Fajitas were a standout - I'll definitely be back for more.
                                 </Card.Text>
                             </Card.Body>
                         </Card>
                     </div>
 
-                    <div>
+                    <div className='col-sm-3 col-12'>
                         <Card style={{ width: '18rem' }}>
                             <Card.Img className="pic" variant="top" src={client2} />
                             <Card.Body>
                                 <Card.Title>Jerimee De Silva</Card.Title>
                                 <Card.Text>
-                                I've been coming to this restaurant for years and the food never disappoints. The Chicken Tikka Masala is my go-to dish, and it's always perfectly spiced and cooked to perfection. Highly recommend.
+                                    I've been coming to this restaurant for years and the food never disappoints. The Chicken Tikka Masala is my go-to dish, and it's always perfectly spiced and cooked to perfection. Highly recommend.
                                 </Card.Text>
                             </Card.Body>
                         </Card>
                     </div>
 
-                    <div>
+                    <div className='col-sm-3 col-12'>
                         <Card style={{ width: '18rem' }}>
                             <Card.Img className="pic" variant="top" src={client3} />
                             <Card.Body>
                                 <Card.Title>Sam Mark</Card.Title>
                                 <Card.Text>
-                                I had the pleasure of trying the seafood paella and it was absolutely incredible. The mix of flavors and textures was spot on - I couldn't get enough. This restaurant is definitely to visit.
+                                    I had the pleasure of trying the seafood paella and it was absolutely incredible. The mix of flavors and textures was spot on - I couldn't get enough. This restaurant is definitely to visit.
                                 </Card.Text>
                             </Card.Body>
                         </Card>

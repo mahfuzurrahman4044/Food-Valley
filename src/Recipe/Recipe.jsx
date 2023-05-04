@@ -14,6 +14,7 @@ const Recipe = () => {
     }, [recipe]);
 
     const { id, pictureLink, name, bio, experience, numLikes, numRecipes, recipes } = recipe;
+    console.log(recipes);
 
     const [showToast, setShowToast] = useState(false);
     const [disableButtons, setDisableButtons] = useState(Array(recipes.length).fill(false));
